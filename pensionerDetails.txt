@@ -5,41 +5,49 @@ docker exec -it mysql-penseionerbyid bash
 
 mysql -uuser -p
 show databases;
-use pensioner
+use pensioner;
 show tables;
 select *from pensioners;
 
-Step 2:Docker image
+Step 2:Maven install
+
+Step 3:Docker image
 docker build -t mypensionerimage .
 docker image ls
 
-Step 3:Linking container and image
-docker run -t --link mysql-penseionerbyid:mysql -p 8666:7075 mypensionerimage
+Step 4:Linking container and image
+docker run -t --link mysql-penseionerbyid:mysql -p 8666:7075 mypensionerimage2
 
-Step 4:postman
+Step 5:postman
 localhost:8666/pensiondetailsbyaadhaar/123
 localhost:8666/pensionerdetails
 localhost:8666/procespension/family_pension
 localhost:8666/bankdetails
 
-Step 5:Json body
+Step 6:Json body
 
-	"name" : "boomi",
+{
+    "aadhaarNumber" : "1234",
+   	 "name" : "boomi",
 	"dob" : "29/02/2000",
-	"salaryearned" : "23000",
-	"da_allowance" : "5000",
-	"typeselforfamilypension" : "self pension",
-	"aadhaarnumber" : "1234 1234 1234",
-	"pensionamount" : "100000",
-	"basicsalary" : "20000",
-	"fixedageByGovt" : "22",
-	"pensioneraccountnumber" : "987654321",
+	"salaryEarned" : "23000",
+	"allowance" : "5000",
+	"typeSelfORFamilypension" : "family pension",
+	"basicSalary" : "20000",
+	"fixedAgeByGovt" : "22",
+	"pensionerAccountNumber" : "987654321",
 	"pancard" : "PAN123",
-	"username" : "mika123",
+	"userName" : "mika123",
 	"password" : "company"
+}
 
+{
+    "aadhaarNumber":"1234",
+	"bankAccountNumber" : "1234000012340000",
+	"bankName" : "hdfc",
+	"bankType" : "Public bank"
+}
+	
 
-	"bankname" : "hdfc",
-	"banktype" : "savings",
-	"BankServiceCharge" : "700",
-	"bankaccountnumber" : "1234000012340000"
+	
+	
