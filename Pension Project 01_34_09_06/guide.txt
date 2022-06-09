@@ -1,0 +1,26 @@
+Step 1:Mysql container
+docker run --name mysql-penseionerbyid -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=pensioners -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d -p 3303:3306 mysql:latest
+docker container ls
+docker exec -it mysql-penseionerbyid bash
+
+mysql -uuser -p
+show databases;
+use pensioner;
+show tables;
+select *from pensioners;
+
+Step 2:Maven install
+
+Step 3:Docker image
+docker build -t mypensionerimage .
+docker image ls
+
+Step 4:Linking container and image
+docker run -t --link mysql-penseionerbyid:mysql -p 8666:7075 mypensionerimage2
+
+Step 5:postman
+localhost:8666/pensioner/csv/upload [select pension csv file]
+localhost:8666/bank/csv/upload  [select bank csv file]
+localhost:8666/pensioner/csv/pensioners
+localhost:8666/bank/csv/banks
+localhost:8666/pensiondetailsbyaadhaar/{aadhaar number}
