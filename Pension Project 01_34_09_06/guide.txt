@@ -5,7 +5,7 @@ docker exec -it mysql-penseionerbyid bash
 
 mysql -uuser -p
 show databases;
-use pensioner;
+use pensioners;
 show tables;
 select *from pensioners;
 
